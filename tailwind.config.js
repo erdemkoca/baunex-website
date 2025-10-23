@@ -6,7 +6,8 @@ export default {
     "./src/components/**/*.{vue,js,ts}",
     "./src/pages/**/*.{vue,js,ts}",
     "./src/App.vue",
-    "./src/main.ts"
+    "./src/main.ts",
+    "./src/style.css"
   ],
   theme: {
     extend: {
