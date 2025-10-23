@@ -17,6 +17,7 @@ const router = createRouter({
     { path: '/preise', component: Pricing },
     { path: '/kontakt', component: Contact },
     { path: '/impressum', component: Legal },
+    { path: '/datenschutz', component: Legal },
   ],
   scrollBehavior() {
     return { top: 0 }
