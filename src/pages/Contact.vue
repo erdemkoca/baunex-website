@@ -4,7 +4,7 @@
     <section class="section-padding">
       <BaseContainer>
         <div class="text-center max-w-4xl mx-auto">
-          <h1 class="text-display-1 mb-6">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Lassen Sie uns
             <span class="text-gradient">sprechen</span>
           </h1>
@@ -22,7 +22,7 @@
         <div class="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           <!-- Contact Form -->
           <div class="card">
-            <h2 class="text-display-3 mb-6">Demo anfragen</h2>
+            <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-6">Demo anfragen</h2>
             <p class="text-neutral-600 mb-8">
               Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden bei Ihnen.
             </p>
@@ -138,7 +138,7 @@
           <!-- Contact Information -->
           <div class="space-y-8">
             <div class="card">
-              <h3 class="text-display-3 mb-6">Kontaktinformationen</h3>
+              <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-6">Kontaktinformationen</h3>
               
               <div class="space-y-6">
                 <div class="flex items-start">
@@ -190,7 +190,7 @@
             </div>
 
             <div class="card bg-gradient-to-br from-primary/5 to-accent-to/5">
-              <h3 class="text-display-3 mb-4">Schnelle Demo</h3>
+              <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Schnelle Demo</h3>
               <p class="text-neutral-600 mb-6">
                 Möchten Sie Baunex sofort in Aktion sehen? Vereinbaren Sie einen Termin für eine 
                 persönliche 30-minütige Demo.

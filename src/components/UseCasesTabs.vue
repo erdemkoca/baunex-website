@@ -34,7 +34,7 @@
           <div class="grid lg:grid-cols-2 gap-12 items-center">
             <!-- Content -->
             <div>
-              <h3 class="text-display-2 mb-6">{{ useCase.title }}</h3>
+              <h3 class="text-3xl md:text-4xl font-bold leading-tight mb-6">{{ useCase.title }}</h3>
               <p class="text-lg text-neutral-600 mb-8">{{ useCase.description }}</p>
               
               <div class="space-y-4 mb-8">

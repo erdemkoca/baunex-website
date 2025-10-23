@@ -1,6 +1,6 @@
 <template>
   <div class="text-center max-w-3xl mx-auto mb-16">
-    <h2 v-if="title" class="text-display-2 mb-4">
+    <h2 v-if="title" class="text-3xl md:text-4xl font-bold leading-tight mb-4">
       {{ title }}
     </h2>
     <p v-if="subtitle" class="text-body text-neutral-500 text-lg">

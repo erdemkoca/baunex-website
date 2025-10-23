@@ -4,7 +4,7 @@
     <section class="section-padding">
       <BaseContainer>
         <div class="text-center max-w-4xl mx-auto">
-          <h1 class="text-display-1 mb-6">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Transparente Preise für
             <span class="text-gradient">jeden Betrieb</span>
           </h1>
@@ -44,7 +44,7 @@
           <!-- Starter Plan -->
           <div class="card group hover:scale-105 transition-all duration-300">
             <div class="text-center mb-8">
-              <h3 class="text-display-3 mb-2">Starter</h3>
+              <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-2">Starter</h3>
               <p class="text-neutral-600 mb-6">Für kleine Betriebe</p>
               <div class="mb-6">
                 <span class="text-4xl font-bold text-neutral-900">
@@ -104,7 +104,7 @@
             </div>
             
             <div class="text-center mb-8">
-              <h3 class="text-display-3 mb-2">Pro</h3>
+              <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-2">Pro</h3>
               <p class="text-neutral-600 mb-6">Für wachsende Unternehmen</p>
               <div class="mb-6">
                 <span class="text-4xl font-bold text-neutral-900">
@@ -170,7 +170,7 @@
           <!-- Enterprise Plan -->
           <div class="card group hover:scale-105 transition-all duration-300">
             <div class="text-center mb-8">
-              <h3 class="text-display-3 mb-2">Enterprise</h3>
+              <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-2">Enterprise</h3>
               <p class="text-neutral-600 mb-6">Für große Unternehmen</p>
               <div class="mb-6">
                 <span class="text-4xl font-bold text-neutral-900">

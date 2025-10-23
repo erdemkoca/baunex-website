@@ -4,7 +4,7 @@
     <section class="section-padding">
       <BaseContainer>
         <div class="text-center max-w-4xl mx-auto">
-          <h1 class="text-display-1 mb-6">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Alle Features für Ihren
             <span class="text-gradient">Bau- und Handwerksbetrieb</span>
           </h1>
@@ -32,7 +32,7 @@
                 <component :is="feature.icon" class="w-8 h-8 text-white" />
               </div>
               
-              <h2 class="text-display-2 mb-4">{{ feature.title }}</h2>
+              <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-4">{{ feature.title }}</h2>
               <p class="text-lg text-neutral-600 mb-6">{{ feature.description }}</p>
               
               <ul class="space-y-3">

@@ -11,7 +11,7 @@
         </div>
 
         <!-- Main Headline -->
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-up" style="animation-delay: 0.1s;">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-up" style="animation-delay: 0.1s;">
           Die leichte Plattform für
           <span class="text-gradient block">Bau- & Handwerksbetriebe</span>
         </h1>

@@ -45,9 +45,6 @@ export default {
         display: ['Inter', 'system-ui', 'sans-serif']
       },
       fontSize: {
-        'display-1': ['44px', { lineHeight: '52px', fontWeight: '700' }],
-        'display-2': ['32px', { lineHeight: '40px', fontWeight: '700' }],
-        'display-3': ['24px', { lineHeight: '32px', fontWeight: '700' }],
         'body': ['16px', { lineHeight: '26px', fontWeight: '400' }],
         'body-medium': ['16px', { lineHeight: '26px', fontWeight: '500' }]
       },
