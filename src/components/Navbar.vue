@@ -12,9 +12,7 @@
           to="/" 
           class="flex items-center space-x-2 text-xl font-bold text-neutral-900 hover:text-primary transition-colors"
         >
-          <div class="w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">B</span>
-          </div>
+          <img src="/images/logos/baunex-logo.png" alt="Baunex" class="h-8 w-auto" />
           <span>Baunex</span>
         </RouterLink>
 

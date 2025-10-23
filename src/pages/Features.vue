@@ -52,13 +52,12 @@
             <!-- Visual -->
             <div class="flex-1">
               <div class="card bg-gradient-to-br from-primary/5 to-accent-to/5">
-                <div class="aspect-video bg-neutral-100 rounded-xl flex items-center justify-center">
-                  <div class="text-center">
-                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <component :is="feature.icon" class="w-10 h-10 text-primary" />
-                    </div>
-                    <p class="text-neutral-500">{{ feature.visualText }}</p>
-                  </div>
+                <div class="aspect-video bg-neutral-100 rounded-xl overflow-hidden">
+                  <img 
+                    :src="feature.screenshot" 
+                    :alt="feature.title"
+                    class="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -119,7 +118,7 @@ const detailedFeatures = [
     title: 'Intelligente Zeiterfassung',
     description: 'Erfassen Sie Arbeitszeiten präzise und automatisch. Mit GPS-Tracking, Pausenerkennung und Offline-Funktionalität.',
     icon: ClockIcon,
-    visualText: 'Zeiterfassung Dashboard',
+    screenshot: '/images/screenshots/mobile-reporting.png',
     benefits: [
       'Mobile App für unterwegs',
       'Automatische Pausenerkennung',
@@ -133,7 +132,7 @@ const detailedFeatures = [
     title: 'Angebot & Rechnung',
     description: 'Erstellen Sie professionelle Angebote und Rechnungen. Mit Vorlagen, automatischer MwSt-Berechnung und digitaler Signatur.',
     icon: FileTextIcon,
-    visualText: 'Rechnungsübersicht',
+    screenshot: '/images/screenshots/dashboard-laptop.png',
     benefits: [
       'Professionelle Vorlagen',
       'Automatische MwSt-Berechnung',
@@ -147,7 +146,7 @@ const detailedFeatures = [
     title: 'Katalog-Management',
     description: 'Verwalten Sie Materialien und Leistungen zentral. Mit Preispflege, Kategorisierung und Lieferantenverwaltung.',
     icon: PackageIcon,
-    visualText: 'Material-Katalog',
+    screenshot: '/images/screenshots/construction-neural-network.png',
     benefits: [
       'Zentrale Material- und Leistungskataloge',
       'Preispflege und Aktualisierung',
@@ -161,7 +160,7 @@ const detailedFeatures = [
     title: 'KI-Forecast & OCR',
     description: 'Nutzen Sie künstliche Intelligenz für bessere Prognosen und automatische Belegenerkennung.',
     icon: SparklesIcon,
-    visualText: 'KI-Analytics',
+    screenshot: '/images/screenshots/construction-neural-network.png',
     benefits: [
       'Intelligente Dauer- und Kostenprognosen',
       'OCR für automatische Belegenerkennung',

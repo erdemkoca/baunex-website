@@ -6,9 +6,7 @@
           <!-- Company Info -->
           <div class="lg:col-span-2">
             <div class="flex items-center space-x-2 mb-6">
-              <div class="w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center">
-                <span class="text-white font-bold text-sm">B</span>
-              </div>
+              <img src="/images/logos/baunex-logo-white.png" alt="Baunex" class="h-8 w-auto" />
               <span class="text-xl font-bold">Baunex</span>
             </div>
             <p class="text-neutral-400 mb-6 max-w-md">
