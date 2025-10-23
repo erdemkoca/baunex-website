@@ -3,7 +3,7 @@
     <h2 v-if="title" class="text-3xl md:text-4xl font-bold leading-tight mb-4">
       {{ title }}
     </h2>
-    <p v-if="subtitle" class="text-body text-neutral-500 text-lg">
+    <p v-if="subtitle" class="text-base text-neutral-500 text-lg">
       {{ subtitle }}
     </p>
     <div v-if="$slots.default" class="mt-6">

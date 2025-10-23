@@ -32,7 +32,7 @@
   }
   
   p {
-    @apply text-body text-neutral-700;
+    @apply text-base text-neutral-700;
   }
   
   a {

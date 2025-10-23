@@ -44,10 +44,6 @@ export default {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Inter', 'system-ui', 'sans-serif']
       },
-      fontSize: {
-        'body': ['16px', { lineHeight: '26px', fontWeight: '400' }],
-        'body-medium': ['16px', { lineHeight: '26px', fontWeight: '500' }]
-      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-accent': 'linear-gradient(135deg, #6366F1 0%, #22D3EE 100%)',
