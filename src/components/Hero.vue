@@ -1,85 +1,47 @@
 <template>
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <BaseContainer class="relative z-10">
-      <div class="text-center max-w-4xl mx-auto">
-        <!-- Badge -->
-        <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 animate-fade-up">
-          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-          </svg>
-          Neu: KI-gestützte Zeiterfassung
-        </div>
-
-        <!-- Main Headline -->
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-up" style="animation-delay: 0.1s;">
-          Die leichte Plattform für
-          <span class="text-gradient block">Bau- & Handwerksbetriebe</span>
+  <section class="pt-16 pb-14">
+    <div class="container grid lg:grid-cols-2 items-center gap-10">
+      <div class="space-y-6">
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-neutral-900">
+          Die leichte Plattform fuer Bau & Handwerk
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            Planen, Zeiten erfassen, sauber abrechnen.
+          </span>
         </h1>
-
-        <!-- Subline -->
-        <p class="text-xl md:text-2xl text-neutral-600 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-up" style="animation-delay: 0.2s;">
-          Von Angebot bis Rechnung – Projekte planen, Zeiten erfassen, sauber abrechnen. 
-          Mit KI-Unterstützung für OCR, Forecasts & Anomalien.
+        <p class="text-lg text-neutral-700 max-w-xl">
+          Moderne Workflows mit KI-Unterstuetzung: OCR, Forecasts, Anomalien. Schnell eingefuehrt, einfach im Alltag.
         </p>
-
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-up" style="animation-delay: 0.3s;">
-          <BaseButton 
-            variant="primary" 
-            size="lg"
-            to="/kontakt"
-            class="w-full sm:w-auto"
-          >
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
+        <div class="flex flex-wrap gap-3">
+          <a href="/kontakt" class="inline-flex items-center rounded-full bg-primary px-5 py-3 text-white shadow-soft hover:shadow-ring transition">
             Demo anfragen
-          </BaseButton>
-          
-          <BaseButton 
-            variant="secondary" 
-            size="lg"
-            to="/features"
-            class="w-full sm:w-auto"
-          >
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+          </a>
+          <a href="/features" class="inline-flex items-center rounded-full border border-neutral-200 bg-white/70 px-5 py-3 text-neutral-900 hover:bg-white transition">
             Funktionsumfang
-          </BaseButton>
+          </a>
         </div>
-
-        <!-- Social Proof -->
-        <div class="animate-fade-up" style="animation-delay: 0.4s;">
-          <p class="text-sm text-neutral-500 mb-6">Vertraut von über 500+ Betrieben</p>
-          <div class="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            <div class="h-8 w-24 bg-neutral-200 rounded flex items-center justify-center">
-              <span class="text-xs text-neutral-500">Logo 1</span>
-            </div>
-            <div class="h-8 w-24 bg-neutral-200 rounded flex items-center justify-center">
-              <span class="text-xs text-neutral-500">Logo 2</span>
-            </div>
-            <div class="h-8 w-24 bg-neutral-200 rounded flex items-center justify-center">
-              <span class="text-xs text-neutral-500">Logo 3</span>
-            </div>
-            <div class="h-8 w-24 bg-neutral-200 rounded flex items-center justify-center">
-              <span class="text-xs text-neutral-500">Logo 4</span>
-            </div>
-            <div class="h-8 w-24 bg-neutral-200 rounded flex items-center justify-center">
-              <span class="text-xs text-neutral-500">Logo 5</span>
-            </div>
-          </div>
+        <!-- Trust row -->
+        <div class="flex items-center gap-6 pt-3 opacity-80">
+          <img src="/images/logos/client-logos/partner-1.png" class="h-6 w-auto" alt="Partner 1"/>
+          <img src="/images/logos/client-logos/partner-2.png" class="h-6 w-auto" alt="Partner 2"/>
+          <img src="/images/logos/client-logos/partner-3.png" class="h-6 w-auto" alt="Partner 3"/>
+          <img src="/images/logos/client-logos/partner-4.png" class="h-6 w-auto" alt="Partner 4"/>
         </div>
       </div>
-    </BaseContainer>
 
-    <!-- Floating Elements -->
-    <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-accent rounded-full opacity-20 blur-xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-r from-primary/30 to-accent-to/30 rounded-full opacity-15 blur-2xl animate-pulse" style="animation-delay: 1s;"></div>
+      <!-- Visual: either hero photo or mockup -->
+      <div class="relative">
+        <div class="rounded-3xl shadow-soft ring-1 ring-white/50 overflow-hidden bg-white/80 backdrop-blur-xs">
+          <img src="/images/people/construction-team-tablet.jpg" alt="Team auf Baustelle mit Tablet-Koordination" class="w-full h-auto" />
+        </div>
+        <!-- floating card -->
+        <div class="hidden md:block absolute -bottom-6 -left-6 rounded-2xl bg-white/80 backdrop-blur-xs shadow-soft p-4">
+          <div class="text-sm text-neutral-700">Forecasts & OCR aktiv</div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import BaseContainer from './BaseContainer.vue'
-import BaseButton from './BaseButton.vue'
+// Hero component with modern gradient headline and glass styling
 </script>

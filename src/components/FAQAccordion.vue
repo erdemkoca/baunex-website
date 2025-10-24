@@ -63,7 +63,7 @@ const faqs = [
   {
     id: 1,
     question: 'Wie sicher sind meine Daten bei Baunex?',
-    answer: 'Ihre Daten sind bei uns in höchster Sicherheit. Wir verwenden SSL-Verschlüsselung, regelmäßige Backups und sind DSGVO-konform. Alle Daten werden in deutschen Rechenzentren gespeichert.'
+    answer: 'Ihre Daten sind bei uns in höchster Sicherheit. Wir verwenden SSL-Verschlüsselung, regelmäßige Backups und sind DSGVO-konform. Alle Daten werden in Rechenzentren gespeichert.'
   },
   {
     id: 2,
