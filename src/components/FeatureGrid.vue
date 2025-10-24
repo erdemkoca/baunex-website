@@ -6,22 +6,22 @@
         subtitle="Von der Zeiterfassung bis zur Rechnung – alle wichtigen Tools für Ihren Bau- und Handwerksbetrieb"
       />
 
-      <!-- Horizontal Auto-Scrolling Modules (oberer Bereich, gleiche Kartenoptik) -->
-      <div class="bnx-marquee" aria-label="Module" ref="marquee">
-        <div class="bnx-track" ref="track">
-          <FeatureCard 
-            v-for="module in allModules" 
-            :key="module.id"
-            class="bnx-card"
-          >
-            <template #icon>
-              <component :is="module.icon" class="w-6 h-6" />
-            </template>
-            <template #title>{{ module.title }}</template>
-            {{ module.description }}
-          </FeatureCard>
+        <!-- Horizontal Auto-Scrolling Modules (kompakt, mehr Karten sichtbar) -->
+        <div class="bnx-marquee bnx-marquee--compact bnx-marquee-fullbleed" aria-label="Module" ref="marquee">
+          <div class="bnx-track" ref="track">
+            <FeatureCard 
+              v-for="module in allModules" 
+              :key="module.id"
+              class="bnx-card"
+            >
+              <template #icon>
+                <div v-html="module.icon" class="w-6 h-6"></div>
+              </template>
+              <template #title>{{ module.title }}</template>
+              {{ module.description }}
+            </FeatureCard>
+          </div>
         </div>
-      </div>
 
       <!-- Detailed Feature Showcases -->
       <div class="space-y-20">
@@ -77,6 +77,7 @@ let rafId: number | null = null
 let prefersReducedMotion = false
 let isCloned = false
 let baseChildrenCount = 0
+let halfWidth = 0
 
 // Geschwindigkeiten (px/s) - HIER ANPASSEN!
 const SPEED_DESKTOP = 140  // Desktop-Geschwindigkeit (höher = schneller)
@@ -111,7 +112,8 @@ function measureHalfWidth(el: HTMLElement) {
   const first = Array.from(el.children).slice(0, baseChildrenCount) as HTMLElement[]
   // Force layout to be safe after fonts
   first.forEach(c => c.getBoundingClientRect())
-  return first.reduce((sum, c, i) => sum + c.offsetWidth + (i ? gap : 0), 0)
+  halfWidth = first.reduce((sum, c, i) => sum + c.offsetWidth + (i ? gap : 0), 0)
+  return halfWidth
 }
 
 function startTicker() {
@@ -132,8 +134,8 @@ function startTicker() {
     last = t
     x -= speed * dt
 
-    // Nahtloser Reset: sobald eine Hälfte raus ist, springe +half zurück
-    if (x <= -half) x += half
+    // Nahtloser Reset: sobald eine Hälfte raus ist, springe +halfWidth zurück
+    if (x <= -halfWidth) x += halfWidth
 
     el.style.transform = `translate3d(${x}px, 0, 0)`
     rafId = requestAnimationFrame(step)
@@ -156,12 +158,12 @@ function startTicker() {
     } 
   })
 
-  // Resize: nur Speed/half neu bestimmen, Position beibehalten
+  // Resize: Speed und halfWidth neu bestimmen, Position beibehalten
   ro = new ResizeObserver(() => {
     if (!track.value) return
     speed = currentSpeed()
-    const newHalf = measureHalfWidth(el)
-    console.log('Resize detected, new speed:', speed, 'new half:', newHalf)
+    measureHalfWidth(el) // Aktualisiert halfWidth Variable
+    console.log('Resize detected, new speed:', speed, 'new halfWidth:', halfWidth)
   })
   ro.observe(el)
 }
@@ -186,120 +188,81 @@ onUnmounted(() => {
   if (rafId) cancelAnimationFrame(rafId)
 })
 
-// Icon components (you can replace these with actual Lucide icons)
-const ClockIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  `
-}
+// Icon components als SVG-Strings
+const ClockIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>`
 
-const FileTextIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-    </svg>
-  `
-}
+const FileTextIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+</svg>`
 
-const SparklesIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-    </svg>
-  `
-}
+const SparklesIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+</svg>`
 
-const ChartBarIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-    </svg>
-  `
-}
+const ChartBarIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+</svg>`
 
 // Additional icons for all modules
-const ProjectIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-    </svg>
-  `
-}
+const ProjectIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+</svg>`
 
-const ShieldIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-    </svg>
-  `
-}
+const ShieldIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+</svg>`
 
-const CheckCircleIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  `
-}
+const CheckCircleIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>`
 
-const DocumentIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-    </svg>
-  `
-}
+const DocumentIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+</svg>`
 
-const BankIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-    </svg>
-  `
-}
+// Spezifische Icons für bessere Zuordnung
+const InvoiceIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+</svg>`
 
-const UsersIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-    </svg>
-  `
-}
+const PayrollIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+</svg>`
+
+const SupplierIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+</svg>`
+
+const ReportIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+</svg>`
+
+const BankIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+</svg>`
+
+const UsersIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+</svg>`
 
 
-const CalendarIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-  `
-}
+const CalendarIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+</svg>`
 
-const CalculatorIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-    </svg>
-  `
-}
+const CalculatorIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+</svg>`
 
-const TrendingUpIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-    </svg>
-  `
-}
+const TrendingUpIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+</svg>`
 
-const PackageIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-    </svg>
-  `
-}
+const PackageIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+</svg>`
 
 
 
@@ -315,7 +278,7 @@ const allModules = [
     id: 2,
     title: 'Angebot & Rechnung',
     description: 'Katalog, Positionen, MwSt – alles drin.',
-    icon: FileTextIcon
+    icon: InvoiceIcon
   },
   {
     id: 3,
@@ -381,7 +344,7 @@ const allModules = [
     id: 13,
     title: 'Lohnabrechnung',
     description: 'Zeiten, Zuschläge, Export.',
-    icon: CalculatorIcon
+    icon: PayrollIcon
   },
   {
     id: 14,
@@ -405,13 +368,13 @@ const allModules = [
     id: 17,
     title: 'Lieferanten',
     description: 'Bestellungen, Eingangsrechnungen.',
-    icon: UsersIcon
+    icon: SupplierIcon
   },
   {
     id: 18,
     title: 'Rapporte',
     description: 'Tages-/Wochenberichte.',
-    icon: DocumentIcon
+    icon: ReportIcon
   }
 ]
 
@@ -542,37 +505,82 @@ const detailedFeatures = [
 </script>
 
 <style scoped>
-/* wichtig: kein Wrap */
-.bnx-track { 
-  display: flex; 
-  gap: 24px; 
-  flex-wrap: nowrap; 
-  will-change: transform; 
-}
-
-/* Kartenbreite fix, wie gehabt */
-.bnx-card { 
-  flex: 0 0 auto; 
-  min-width: 360px; 
-  max-width: 360px; 
-}
-
-@media (max-width: 768px) {
-  .bnx-card { 
-    min-width: 280px; 
-    max-width: 280px; 
-  }
-  .bnx-track { 
-    gap: 16px; 
-  }
-}
-
-/* Container ohne Edge-Fades */
-.bnx-marquee { 
+/* CSS-Variablen für Dichte-Modi */
+.bnx-marquee {
+  /* Defaults (aktueller Look) */
+  --card-w: 360px;
+  --gap: 24px;
+  --pad: 22px;
+  --title: 18px;
+  
   position: relative; 
   overflow: hidden; 
   padding: 20px 0; 
 }
+
+/* Kompakt: mehr Boxen sichtbar - mit horizontalem Icon-Layout */
+.bnx-marquee--compact {
+  --card-w: 320px;
+  --gap: 16px;
+  --pad: 18px;
+  --title: 17px;
+}
+
+/* Super-kompakt für sehr breite Screens */
+@media (min-width: 1440px) {
+  .bnx-marquee--compact {
+    --card-w: 300px;
+    --gap: 16px;
+  }
+}
+
+/* Full-bleed: marquee rand-zu-rand für noch mehr Platz */
+.bnx-marquee-fullbleed {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: max(24px, calc((100vw - 1240px)/2));
+}
+
+/* Track und Karten mit CSS-Variablen */
+.bnx-track { 
+  display: flex; 
+  gap: var(--gap); 
+  flex-wrap: nowrap; 
+  will-change: transform; 
+}
+
+.bnx-card { 
+  flex: 0 0 auto; 
+  min-width: var(--card-w); 
+  max-width: var(--card-w); 
+  padding: var(--pad);
+}
+
+.bnx-card h3 { 
+  font-size: var(--title); 
+}
+
+/* Spezielle Styles für horizontales Icon-Layout */
+.bnx-card .flex {
+  align-items: flex-start; /* Icons oben ausrichten */
+}
+
+.bnx-card h3 {
+  line-height: 1.3; /* Kompaktere Zeilenhöhe */
+  margin: 0; /* Margin entfernt, da in flex container */
+}
+
+/* Mobile bleibt klein wie gehabt */
+@media (max-width: 768px) {
+  .bnx-marquee, .bnx-marquee--compact {
+    --card-w: 280px;
+    --gap: 16px;
+    --pad: 16px;
+    --title: 16px;
+  }
+}
+
+/* Edge-Fades entfernt - keine schwarzen Balken mehr */
 </style>
 
 <!-- Keyframes entfernt - verwenden jetzt requestAnimationFrame -->
