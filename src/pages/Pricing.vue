@@ -515,7 +515,6 @@ import BaseButton from '../components/BaseButton.vue'
 import SectionHeading from '../components/SectionHeading.vue'
 import CTASection from '../components/CTASection.vue'
 
-const isYearly = ref(false)
 const openFAQs = ref<number[]>([])
 
 const toggleFAQ = (index: number) => {
