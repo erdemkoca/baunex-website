@@ -96,7 +96,10 @@ function cloneOnce(el: HTMLElement) {
   if (isCloned) return
   baseChildrenCount = el.children.length
   const clones: Node[] = []
-  for (let i = 0; i < baseChildrenCount; i++) clones.push(el.children[i].cloneNode(true))
+  for (let i = 0; i < baseChildrenCount; i++) {
+    const child = el.children[i]
+    if (child) clones.push(child.cloneNode(true))
+  }
   clones.forEach(n => el.appendChild(n))
   isCloned = true
   console.log('Cloned', baseChildrenCount, 'elements, total:', el.children.length)
@@ -265,13 +268,6 @@ const UsersIcon = {
   `
 }
 
-const MessageIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-    </svg>
-  `
-}
 
 const CalendarIcon = {
   template: `
@@ -305,22 +301,7 @@ const PackageIcon = {
   `
 }
 
-const SettingsIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-  `
-}
 
-const GlobeIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9" />
-    </svg>
-  `
-}
 
 // All modules for the horizontal scrolling grid
 const allModules = [
@@ -434,33 +415,6 @@ const allModules = [
   }
 ]
 
-// Main features for the overview grid
-const mainFeatures = [
-  {
-    id: 1,
-    title: 'Zeiterfassung',
-    description: 'Einfach Stunden loggen, präzise abrechnen.',
-    icon: ClockIcon
-  },
-  {
-    id: 2,
-    title: 'Angebot & Rechnung',
-    description: 'Katalog, Positionen, MwSt – alles drin.',
-    icon: FileTextIcon
-  },
-  {
-    id: 3,
-    title: 'KI-Unterstützung',
-    description: 'Forecasts, OCR für Belege, Anomalien finden.',
-    icon: SparklesIcon
-  },
-  {
-    id: 4,
-    title: 'Transparenz',
-    description: 'Alle Projektkosten im Blick – live.',
-    icon: ChartBarIcon
-  }
-]
 
 // Detailed features with screenshots
 const detailedFeatures = [
