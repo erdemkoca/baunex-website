@@ -9,7 +9,7 @@
           <div class="card">
             <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-8">Impressum</h2>
             <div class="prose prose-lg max-w-none">
-              <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Angaben gemäß § 5 TMG</h3>
+              <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Angaben gemäss § 5 TMG</h3>
               <p class="mb-6">
                 Baunex AG<br>
                 Musterstrasse 123<br>
@@ -35,7 +35,7 @@
               
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Umsatzsteuer-ID</h3>
               <p class="mb-6">
-                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+                Umsatzsteuer-Identifikationsnummer gemäss § 27 a Umsatzsteuergesetz:<br>
                 CHE-123.456.789 MWST
               </p>
               
@@ -80,7 +80,7 @@
                 USA
               </p>
               <p class="mb-6">
-                Die Erfassung und Verarbeitung Ihrer Daten erfolgt ausschließlich in der Schweiz und unterliegt den strengen schweizerischen Datenschutzgesetzen.
+                Die Erfassung und Verarbeitung Ihrer Daten erfolgt ausschliesslich in der Schweiz und unterliegt den strengen schweizerischen Datenschutzgesetzen.
               </p>
               
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">4. Allgemeine Hinweise und Pflichtinformationen</h3>
@@ -117,7 +117,7 @@
             <div class="prose prose-lg max-w-none">
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Haftung für Inhalte</h3>
               <p class="mb-6">
-                Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht unter der Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+                Als Diensteanbieter sind wir gemäss § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht unter der Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
               </p>
               
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Haftung für Links</h3>
@@ -127,7 +127,7 @@
               
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Urheberrecht</h3>
               <p class="mb-6">
-                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem schweizerischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem schweizerischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
               </p>
             </div>
           </div>

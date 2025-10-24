@@ -129,7 +129,7 @@ const useCases = [
   {
     id: 2,
     title: 'Generalunternehmer',
-    description: 'Ideal für größere Bauunternehmen mit mehreren Projekten gleichzeitig. Erweiterte Planung und Koordination.',
+    description: 'Ideal für grössere Bauunternehmen mit mehreren Projekten gleichzeitig. Erweiterte Planung und Koordination.',
     icon: BuildingIcon,
     visualText: 'Projektübersicht',
     benefits: [

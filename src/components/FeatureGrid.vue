@@ -23,43 +23,6 @@
           </div>
         </div>
 
-      <!-- Detailed Feature Showcases -->
-      <div class="space-y-20">
-        <div 
-          v-for="(feature, index) in detailedFeatures" 
-          :key="feature.id"
-          class="grid lg:grid-cols-2 items-center gap-12"
-          :class="{ 'lg:grid-flow-col-dense': index % 2 === 1 }"
-        >
-          <!-- Content -->
-          <div :class="{ 'lg:col-start-2': index % 2 === 1 }">
-            <h3 class="text-h3 font-bold text-neutral-900 mb-4">{{ feature.title }}</h3>
-            <p class="text-body text-neutral-700 mb-6">{{ feature.description }}</p>
-            
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div 
-                v-for="benefit in feature.benefits" 
-                :key="benefit"
-                class="flex items-center gap-3"
-              >
-                <div class="w-6 h-6 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-3 h-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                  </svg>
-                </div>
-                <span class="text-sm text-neutral-700">{{ benefit }}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Screenshot -->
-          <div :class="{ 'lg:col-start-1': index % 2 === 1 }">
-            <div class="rounded-3xl shadow-soft ring-1 ring-white/50 overflow-hidden bg-white/80 backdrop-blur-xs">
-              <img :src="feature.screenshot" :alt="feature.title" class="w-full h-auto" />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 </template>
@@ -261,244 +224,132 @@ const PackageIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
 </svg>`
 
+const FileTextIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+</svg>`
 
 
-// All modules for the horizontal scrolling grid
+
+// All modules for the horizontal scrolling grid - restructured for clarity
 const allModules = [
+  // OPERATIVE MODULE
   {
     id: 1,
-    title: 'Zeiterfassung',
-    description: 'Einfach Stunden loggen, präzise abrechnen.',
+    title: 'Zeiten & Rapporte',
+    description: 'Arbeitszeiten, Bautagebuch, Fotos, Signaturen.',
     icon: ClockIcon
   },
   {
     id: 2,
-    title: 'Angebot & Rechnung',
-    description: 'Katalog, Positionen, MwSt – alles drin.',
-    icon: InvoiceIcon
+    title: 'Dokumente & OCR',
+    description: 'Ablage, Versionierung, OCR, Volltextsuche.',
+    icon: DocumentIcon
   },
   {
     id: 3,
-    title: 'KI-Unterstützung',
-    description: 'Forecasts, OCR für Belege, Anomalien finden.',
-    icon: SparklesIcon
+    title: 'Beschaffungssystem',
+    description: 'Lieferanten, Materialkatalog, Bestellungen.',
+    icon: SupplierIcon
   },
   {
     id: 4,
-    title: 'Transparenz',
-    description: 'Alle Projektkosten im Blick – live.',
-    icon: ChartBarIcon
+    title: 'Inventarverwaltung',
+    description: 'Barcode-Scanning, Lagerbestand, Alerts.',
+    icon: PackageIcon
   },
+  
+  // PROJEKTSTEUERUNG
   {
     id: 5,
     title: 'Projektmanagement',
-    description: 'Aufgaben, Meilensteine, Gantt.',
+    description: 'Gantt-Charts, Meilensteine, Aufgaben.',
     icon: ProjectIcon
   },
   {
     id: 6,
-    title: 'HSE (Sicherheit & Gesundheit)',
-    description: 'Checklisten, Vorfälle, Compliance.',
-    icon: ShieldIcon
-  },
-  {
-    id: 7,
-    title: 'Qualität',
-    description: 'Inspektionen, Mängel, Fotodoku.',
-    icon: CheckCircleIcon
-  },
-  {
-    id: 8,
-    title: 'Dokumente & OCR',
-    description: 'Upload, Versionierung, Texterkennung.',
-    icon: DocumentIcon
-  },
-  {
-    id: 9,
-    title: 'Banking',
-    description: 'Zahlungen, Abgleiche, Export.',
-    icon: BankIcon
-  },
-  {
-    id: 10,
-    title: 'CRM',
-    description: 'Kontakte, Leads, Angebote.',
-    icon: UsersIcon
-  },
-  {
-    id: 11,
-    title: 'Abwesenheiten',
-    description: 'Urlaub, Krankheit, Freigaben.',
+    title: 'Terminplanung',
+    description: 'Wetter-Integration, Ressourcenplanung.',
     icon: CalendarIcon
   },
   {
-    id: 12,
-    title: 'Buchhaltung',
-    description: 'Belege, Konten, Auswertungen.',
-    icon: CalculatorIcon
-  },
-  {
-    id: 13,
-    title: 'Lohnabrechnung',
-    description: 'Zeiten, Zuschläge, Export.',
-    icon: PayrollIcon
-  },
-  {
-    id: 14,
-    title: 'Business-Analyse',
-    description: 'Dashboards, KPIs, Reports.',
-    icon: TrendingUpIcon
-  },
-  {
-    id: 15,
-    title: 'Katalog & Positionen',
-    description: 'Leistungen, Material, Preise.',
-    icon: PackageIcon
-  },
-  {
-    id: 16,
-    title: 'Kostenkontrolle',
-    description: 'Budgets, Soll-Ist, Prognosen.',
+    id: 7,
+    title: 'Kostenkontrolle & Budget',
+    description: 'Soll-Ist, Change Orders, Prognosen.',
     icon: ChartBarIcon
   },
   {
-    id: 17,
-    title: 'Lieferanten',
-    description: 'Bestellungen, Eingangsrechnungen.',
-    icon: SupplierIcon
-  },
-  {
-    id: 18,
-    title: 'Rapporte',
-    description: 'Tages-/Wochenberichte.',
-    icon: ReportIcon
-  }
-]
-
-
-// Detailed features with screenshots
-const detailedFeatures = [
-  {
-    id: 1,
-    title: 'Mobile Zeiterfassung',
-    description: 'Erfassen Sie Arbeitszeiten direkt auf der Baustelle mit GPS-Standortverfolgung und automatischer Pausenerkennung.',
-    screenshot: '/images/screenshots/features/time-tracking-mobile.png',
-    benefits: [
-      'GPS-Standortverfolgung',
-      'Automatische Pausenerkennung',
-      'Offline-Funktionalität',
-      'Echtzeit-Synchronisation'
-    ]
-  },
-  {
-    id: 2,
-    title: 'Rechnungsgenerierung',
-    description: 'Erstellen Sie professionelle Rechnungen mit automatischer MwSt-Berechnung und PDF-Export.',
-    screenshot: '/images/screenshots/features/invoice-generation.png',
-    benefits: [
-      'Vorlagen-Bibliothek',
-      'Automatische MwSt-Berechnung',
-      'PDF-Export',
-      'Digitale Signatur'
-    ]
-  },
-  {
-    id: 3,
-    title: 'KI-OCR Dokumentenverarbeitung',
-    description: 'Automatische Texterkennung für Belege und Rechnungen mit hoher Genauigkeit.',
-    screenshot: '/images/screenshots/features/ai-ocr-document.png',
-    benefits: [
-      'OCR für Belege',
-      'Automatische Datenextraktion',
-      'Intelligente Kategorisierung',
-      'Vertrauensscore-Anzeige'
-    ]
-  },
-  {
-    id: 4,
-    title: 'Analytics Dashboard',
-    description: 'Echtzeit-Übersicht über alle wichtigen KPIs und Projektmetriken.',
-    screenshot: '/images/screenshots/features/analytics-dashboard.png',
-    benefits: [
-      'Echtzeit-Dashboard',
-      'Kostenübersicht',
-      'Rentabilitäts-Analyse',
-      'Automatische Reports'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Projektmanagement',
-    description: 'Verwalten Sie alle Ihre Bauprojekte mit Gantt-Charts und Meilenstein-Tracking.',
-    screenshot: '/images/screenshots/features/project-management.png',
-    benefits: [
-      'Gantt-Chart Visualisierung',
-      'Meilenstein-Tracking',
-      'Team-Zuweisungen',
-      'Fortschritts-Monitoring'
-    ]
-  },
-  {
-    id: 6,
-    title: 'Terminplanung',
-    description: 'Optimierte Terminplanung mit Wetterberücksichtigung und Ressourcenallokation.',
-    screenshot: '/images/screenshots/features/scheduling-timeline.png',
-    benefits: [
-      'Wetter-Integration',
-      'Ressourcenplanung',
-      'Konflikt-Erkennung',
-      'Automatische Optimierung'
-    ]
-  },
-  {
-    id: 7,
-    title: 'Beschaffungssystem',
-    description: 'Verwalten Sie Lieferanten, Materialkataloge und Bestellungen zentral.',
-    screenshot: '/images/screenshots/features/procurement-system.png',
-    benefits: [
-      'Lieferanten-Datenbank',
-      'Materialkatalog',
-      'Bestellverfolgung',
-      'Kostenvergleich'
-    ]
-  },
-  {
     id: 8,
-    title: 'Inventarverwaltung',
-    description: 'Barcode-Scanning und Lagerbestandsverfolgung für alle Materialien.',
-    screenshot: '/images/screenshots/features/inventory-management.png',
-    benefits: [
-      'Barcode-Scanning',
-      'Lagerbestandsverfolgung',
-      'Niedrigbestand-Alerts',
-      'Standort-Management'
-    ]
+    title: 'Subunternehmer & Verträge',
+    description: 'Ausschreibungen, Vergabe, Leistungsnachweise.',
+    icon: UsersIcon
   },
   {
     id: 9,
-    title: 'Sicherheit & Gesundheit',
-    description: 'HSE-Management mit Checklisten, Incident-Reporting und Compliance-Tracking.',
-    screenshot: '/images/screenshots/features/hse-safety.png',
-    benefits: [
-      'Sicherheits-Checklisten',
-      'Incident-Reporting',
-      'Compliance-Tracking',
-      'Schulungsverwaltung'
-    ]
+    title: 'Ressourcen & Einsatzplanung',
+    description: 'Personal- und Geräteplanung, Schichten.',
+    icon: TrendingUpIcon
   },
   {
     id: 10,
     title: 'Qualitätskontrolle',
-    description: 'Dokumentation von Inspektionen, Defekten und Qualitätsmetriken.',
-    screenshot: '/images/screenshots/features/quality-control.png',
-    benefits: [
-      'Inspektions-Checklisten',
-      'Foto-Dokumentation',
-      'Defekt-Tracking',
-      'Qualitäts-Metriken'
-    ]
+    description: 'Inspektionen, Mängel, Fotodoku.',
+    icon: CheckCircleIcon
+  },
+  {
+    id: 11,
+    title: 'HSE (Sicherheit & Gesundheit)',
+    description: 'Checklisten, Vorfälle, Compliance.',
+    icon: ShieldIcon
+  },
+  
+  // COMMERCIAL/BACKOFFICE
+  {
+    id: 12,
+    title: 'Angebote & Kalkulation',
+    description: 'LV/Positionen, Margen, Varianten.',
+    icon: InvoiceIcon
+  },
+  {
+    id: 13,
+    title: 'Rechnungsgenerierung',
+    description: 'Vorlagen, MwSt, PDF-Export.',
+    icon: FileTextIcon
+  },
+  {
+    id: 14,
+    title: 'Finanzen & Banking',
+    description: 'Kreditoren/Debitoren, Zahlabgleich.',
+    icon: BankIcon
+  },
+  {
+    id: 15,
+    title: 'Lohnabrechnung',
+    description: 'Zeiten, Zuschläge, Swissdec-Export.',
+    icon: PayrollIcon
+  },
+  {
+    id: 16,
+    title: 'CRM & Kundenmanagement',
+    description: 'Kundenbeziehungen, Leads, Verkaufschancen.',
+    icon: UsersIcon
+  },
+  
+  // PLATTFORM
+  {
+    id: 17,
+    title: 'BI & Analytics',
+    description: 'Dashboards, KPIs, Forecasts, Reports.',
+    icon: TrendingUpIcon
+  },
+  {
+    id: 18,
+    title: 'Integrationen & API',
+    description: 'Swissdec, DATEV, Bank-APIs, Webhooks.',
+    icon: SparklesIcon
   }
 ]
+
+
 </script>
 
 <style scoped>

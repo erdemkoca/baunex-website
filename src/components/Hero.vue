@@ -3,13 +3,13 @@
     <div class="container grid lg:grid-cols-2 items-center gap-10">
       <div class="space-y-6">
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-neutral-900">
-          Die leichte Plattform fuer Bau & Handwerk
+          Die leichte Plattform für Bau & Handwerk
           <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
             Planen, Zeiten erfassen, sauber abrechnen.
           </span>
         </h1>
         <p class="text-lg text-neutral-700 max-w-xl">
-          Moderne Workflows mit KI-Unterstuetzung: OCR, Forecasts, Anomalien. Schnell eingefuehrt, einfach im Alltag.
+          Moderne Workflows mit KI-Unterstützung: OCR, Forecasts, Anomalien. Schnell eingeführt, einfach im Alltag.
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/kontakt" class="inline-flex items-center rounded-full bg-primary px-5 py-3 text-white shadow-soft hover:shadow-ring transition">
