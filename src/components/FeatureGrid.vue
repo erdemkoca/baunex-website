@@ -1,7 +1,7 @@
 <template>
   <section class="py-16 md:py-20 section-gap">
         <div class="container">
-          <div class="card-light">
+          <div class="card-light relative overflow-hidden isolate">
             <SectionHeading
               title="Alles was Sie brauchen, in einer Plattform"
               subtitle="Von der Zeiterfassung bis zur Rechnung – alle wichtigen Tools für Ihren Bau- und Handwerksbetrieb"
@@ -30,12 +30,12 @@
         </div>
 
         <!-- Horizontal Auto-Scrolling Modules (kompakt, mehr Karten sichtbar) -->
-        <div class="bnx-marquee bnx-marquee--compact bnx-marquee-fullbleed" aria-label="Module" ref="marquee">
+        <div class="bnx-marquee bnx-marquee--compact bnx-marquee-fullbleed relative overflow-hidden rounded-[inherit]" aria-label="Module" ref="marquee">
           <div class="bnx-track" ref="track">
             <FeatureCard 
               v-for="module in allModules" 
               :key="module.id"
-              class="bnx-card rounded-2xl shadow-[0_8px_30px_rgba(2,6,23,0.06)] ring-1 ring-slate-200/60 bg-white hover:shadow-[0_12px_40px_rgba(2,6,23,0.10)] hover:-translate-y-0.5 transition focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
+              class="bnx-card rounded-2xl shadow-[0_8px_30px_rgba(2,6,23,0.06)] ring-1 ring-slate-200/60 bg-white hover:shadow-[0_8px_25px_rgba(2,6,23,0.12)] hover:-translate-y-0.5 transition focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
             >
               <template #icon>
                 <div v-html="module.icon" class="w-6 h-6 text-indigo-600"></div>
@@ -446,6 +446,12 @@ const allModules = [
 }
 
 /* Edge-Fades entfernt - keine schwarzen Balken mehr */
+
+/* Ensure focus states remain visible within clipped container */
+.bnx-card:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
 </style>
 
 <!-- Keyframes entfernt - verwenden jetzt requestAnimationFrame -->
