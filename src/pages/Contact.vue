@@ -27,6 +27,19 @@
               Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden bei Ihnen.
             </p>
             
+            <!-- Business Type Indicator -->
+            <div v-if="businessType" class="mb-6 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                <span class="text-sm font-medium text-indigo-700">
+                  Anfrage für: 
+                  <span v-if="businessType === 'kleinbetrieb'">Einzel- & Kleinbetriebe</span>
+                  <span v-else-if="businessType === 'mittelstand'">Bauunternehmen & Mittelstand</span>
+                  <span v-else-if="businessType === 'generalunternehmer'">General- & Totalunternehmer</span>
+                </span>
+              </div>
+            </div>
+            
             <form @submit.prevent="submitForm" class="space-y-6">
               <div class="grid md:grid-cols-2 gap-4">
                 <div>
@@ -263,12 +276,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import BaseContainer from '../components/BaseContainer.vue'
 import BaseButton from '../components/BaseButton.vue'
 
+const route = useRoute()
 const isSubmitting = ref(false)
 const openFAQs = ref<number[]>([])
+
+// Business type from URL parameter
+const businessType = ref('')
 
 const form = ref({
   name: '',
@@ -276,7 +294,30 @@ const form = ref({
   company: '',
   phone: '',
   message: '',
-  privacy: false
+  privacy: false,
+  businessType: ''
+})
+
+// Initialize business type from URL parameter
+onMounted(() => {
+  const type = route.query.type as string
+  if (type) {
+    businessType.value = type
+    form.value.businessType = type
+    
+    // Pre-fill message based on business type
+    switch (type) {
+      case 'kleinbetrieb':
+        form.value.message = 'Ich interessiere mich für Baunex für meinen Kleinbetrieb. Bitte kontaktieren Sie mich für eine Demo.'
+        break
+      case 'mittelstand':
+        form.value.message = 'Ich interessiere mich für Baunex für mein Bauunternehmen/Mittelstand. Bitte kontaktieren Sie mich für eine Live-Demo.'
+        break
+      case 'generalunternehmer':
+        form.value.message = 'Ich interessiere mich für Baunex für mein Generalunternehmen. Bitte kontaktieren Sie mich für eine Beratung.'
+        break
+    }
+  }
 })
 
 const toggleFAQ = (index: number) => {
@@ -332,7 +373,8 @@ const submitForm = async () => {
       company: '',
       phone: '',
       message: '',
-      privacy: false
+      privacy: false,
+      businessType: businessType.value // Keep business type
     }
   } catch (error) {
     alert('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.')

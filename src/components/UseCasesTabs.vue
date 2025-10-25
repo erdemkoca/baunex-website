@@ -2,10 +2,10 @@
   <section class="section-padding section-gap">
     <BaseContainer>
       <div class="card-light">
-        <SectionHeading
-          title="Für jeden Betriebstyp optimiert"
-          subtitle="Ob Kleinbetrieb oder Generalunternehmer – Baunex passt sich Ihren Bedürfnissen an"
-        />
+              <SectionHeading
+                title="Für jeden Betriebstyp optimiert"
+                subtitle="Baunex passt sich Ihrem Team und Ihren Projekten an – vom Einmannbetrieb bis GU/TU."
+              />
 
         <!-- Sticky Tab Navigation -->
         <div class="sticky top-4 z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-2 mb-8">
@@ -45,27 +45,22 @@
 
         <!-- Tab Content - Two Column Layout -->
         <div class="max-w-6xl mx-auto">
-          <div 
-            v-for="(useCase, index) in useCases"
-            :key="useCase.id"
-            v-show="activeTab === index"
-            class="animate-fade-in"
-          >
+          <div class="animate-fade-in">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
               <!-- Content Column -->
               <div class="space-y-6">
                 <div>
                   <h3 class="text-3xl md:text-4xl font-bold leading-tight mb-4 text-neutral-900">
-                    {{ useCase.title }}
+                    {{ currentUseCase.title }}
                   </h3>
                   <p class="text-lg text-neutral-600 leading-relaxed">
-                    {{ useCase.description }}
+                    {{ currentUseCase.description }}
                   </p>
                 </div>
                 
                 <div class="space-y-4">
                   <div 
-                    v-for="benefit in useCase.benefits"
+                    v-for="benefit in currentUseCase.benefits"
                     :key="benefit"
                     class="flex items-start gap-3"
                   >
@@ -79,8 +74,8 @@
                 </div>
 
                 <div class="pt-4">
-                  <BaseButton variant="primary" to="/kontakt" class="w-full sm:w-auto">
-                    {{ getCTAButtonText(useCase.title) }}
+                  <BaseButton variant="primary" :to="currentContactUrl" class="w-full sm:w-auto">
+                    {{ currentCTAButtonText }}
                   </BaseButton>
                 </div>
               </div>
@@ -91,9 +86,9 @@
                   <div class="aspect-video bg-white rounded-xl flex items-center justify-center shadow-sm">
                     <div class="text-center">
                       <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <component :is="useCase.icon" class="w-8 h-8 text-indigo-600" />
+                        <component :is="currentUseCase.icon" class="w-8 h-8 text-indigo-600" />
                       </div>
-                      <p class="text-neutral-600 font-medium">{{ useCase.visualText }}</p>
+                      <p class="text-neutral-600 font-medium">{{ currentUseCase.visualText }}</p>
                     </div>
                   </div>
                 </div>
@@ -107,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import BaseContainer from './BaseContainer.vue'
 import SectionHeading from './SectionHeading.vue'
 import BaseButton from './BaseButton.vue'
@@ -183,19 +178,51 @@ function startGewerkeTicker() {
   })
 }
 
-// CTA button text based on use case
-function getCTAButtonText(useCaseTitle: string): string {
-  switch (useCaseTitle) {
-    case 'Kleinbetrieb':
+// Current use case based on active tab
+const currentUseCase = computed(() => {
+  return useCases[activeTab.value] || useCases[0]
+})
+
+// CTA button text based on active tab
+const currentCTAButtonText = computed(() => {
+  const useCase = currentUseCase.value
+  if (!useCase) return 'Jetzt testen'
+  
+  switch (useCase.title) {
+    case 'Einzel- & Kleinbetriebe':
       return 'Jetzt testen'
-    case 'Generalunternehmer':
-      return 'Demo anfragen'
-    case 'Handwerker':
-      return 'Kostenlos starten'
+    case 'Bauunternehmen & Mittelstand':
+      return 'Live-Demo buchen'
+    case 'General- & Totalunternehmer':
+      return 'Beratung anfragen'
     default:
       return 'Jetzt testen'
   }
-}
+})
+
+// Contact URL with business type parameter
+const currentContactUrl = computed(() => {
+  const useCase = currentUseCase.value
+  if (!useCase) return '/kontakt'
+  
+  // Create URL parameter based on business type
+  let businessType = ''
+  switch (useCase.title) {
+    case 'Einzel- & Kleinbetriebe':
+      businessType = 'kleinbetrieb'
+      break
+    case 'Bauunternehmen & Mittelstand':
+      businessType = 'mittelstand'
+      break
+    case 'General- & Totalunternehmer':
+      businessType = 'generalunternehmer'
+      break
+    default:
+      businessType = 'kleinbetrieb'
+  }
+  
+  return `/kontakt?type=${businessType}`
+})
 
 // Icon components
 const HomeIcon = {
@@ -223,48 +250,44 @@ const WrenchIcon = {
   `
 }
 
-
 const useCases = [
   {
     id: 1,
-    title: 'Kleinbetrieb',
-    description: 'Perfekt für Handwerker und kleine Betriebe mit bis zu 10 Mitarbeitern. Einfache Bedienung, alle wichtigen Funktionen.',
+    title: 'Einzel- & Kleinbetriebe',
+    description: 'Schnell starten. Zeiten, Angebote und Rechnungen ohne Aufwand – unterwegs und im Büro.',
     icon: HomeIcon,
-    visualText: 'Kleinbetrieb Dashboard',
+    visualText: 'Mobile Zeiterfassung & Rechnungen',
     benefits: [
-      'Einfache Zeiterfassung für kleine Teams',
-      'Schnelle Angebotserstellung',
-      'Automatische Rechnungsstellung',
-      'Mobile App für unterwegs',
-      'Günstige Preise für Einzelunternehmer'
+      'Mobile Zeiterfassung & Rapport',
+      'Angebots-/Rechnungsstellung in Minuten',
+      'Beleg-OCR & Auto-Kontierung',
+      'Einfache Kunden- & Projektübersicht'
     ]
   },
   {
     id: 2,
-    title: 'Generalunternehmer',
-    description: 'Ideal für grössere Bauunternehmen mit mehreren Projekten gleichzeitig. Erweiterte Planung und Koordination.',
+    title: 'Bauunternehmen & Mittelstand',
+    description: 'Transparenz von Kosten bis Ressourcen – Projekte termintreu steuern und Abweichungen früh erkennen.',
     icon: BuildingIcon,
-    visualText: 'Projektübersicht',
+    visualText: 'Ressourcen- & Kosten-Dashboard',
     benefits: [
-      'Multi-Projekt-Management',
-      'Ressourcenplanung und -zuweisung',
-      'Detaillierte Kostenkontrolle',
-      'Team-Koordination und Kommunikation',
-      'Erweiterte Reporting-Funktionen'
+      'Ressourcen- & Einsatzplanung (Personen, Geräte)',
+      'Kostenkontrolle (Soll-Ist, Budgets, Prognosen)',
+      'Beschaffung & Lieferanten, Eingangsrechnungen',
+      'Dashboards, Forecasts & Anomalie-Erkennung'
     ]
   },
   {
     id: 3,
-    title: 'Handwerker',
-    description: 'Speziell für Handwerksbetriebe entwickelt. Fokus auf Serviceleistungen und Kundenservice.',
+    title: 'General- & Totalunternehmer',
+    description: 'Struktur für große Vorhaben: Gewerke, Nachträge, Verträge – alles sauber verzahnt.',
     icon: WrenchIcon,
-    visualText: 'Service-Termine',
+    visualText: 'Subunternehmer- & Vertragsmanagement',
     benefits: [
-      'Terminplanung und -verwaltung',
-      'Kundendatenbank und Historie',
-      'Service-Aufträge verwalten',
-      'Material- und Ersatzteilverwaltung',
-      'Kundenzufriedenheit verfolgen'
+      'Subunternehmer- & Vertragsmanagement',
+      'Nachträge/Change Orders & Abnahmen',
+      'Dokumente & Versionierung (Pläne, Protokolle)',
+      'Integrationen (DATEV/Swissdec, Bank-APIs, DMS)'
     ]
   }
 ]
