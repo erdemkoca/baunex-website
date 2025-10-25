@@ -1,6 +1,7 @@
 <template>
-  <section class="section-padding">
+  <section class="section-padding section-gap">
     <BaseContainer>
+      <div class="card-light">
       <SectionHeading
         title="Für jeden Betriebstyp optimiert"
         subtitle="Ob Kleinbetrieb oder Generalunternehmer – Baunex passt sich Ihren Bedürfnissen an"
@@ -72,6 +73,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
     </BaseContainer>
   </section>

@@ -1,10 +1,33 @@
 <template>
-  <section class="py-16 md:py-20">
-    <div class="container">
-      <SectionHeading
-        title="Alles was Sie brauchen, in einer Plattform"
-        subtitle="Von der Zeiterfassung bis zur Rechnung – alle wichtigen Tools für Ihren Bau- und Handwerksbetrieb"
-      />
+  <section class="py-16 md:py-20 section-gap">
+        <div class="container">
+          <div class="card-light">
+            <SectionHeading
+              title="Alles was Sie brauchen, in einer Plattform"
+              subtitle="Von der Zeiterfassung bis zur Rechnung – alle wichtigen Tools für Ihren Bau- und Handwerksbetrieb"
+            />
+
+        <!-- KI-Features Chips -->
+        <div class="mt-6 lg:mt-8 flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none">
+            <span class="w-2 h-2 rounded-full bg-[#4F46E5]"></span> Beleg-OCR & Auto-Kontierung
+          </span>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none">
+            <span class="w-2 h-2 rounded-full bg-[#4F46E5]"></span> Zeit- & Leistungsvorschläge
+          </span>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none">
+            <span class="w-2 h-2 rounded-full bg-[#4F46E5]"></span> Anomalien (Kosten/Zeiten)
+          </span>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none">
+            <span class="w-2 h-2 rounded-full bg-[#4F46E5]"></span> Intelligente Suche & Chat
+          </span>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none">
+            <span class="w-2 h-2 rounded-full bg-[#4F46E5]"></span> Forecasts & Analysen
+          </span>
+<!--          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none">-->
+<!--            <span class="w-2 h-2 rounded-full bg-[#4F46E5]"></span> Qualität & HSE: Bildanalyse-->
+<!--          </span>-->
+        </div>
 
         <!-- Horizontal Auto-Scrolling Modules (kompakt, mehr Karten sichtbar) -->
         <div class="bnx-marquee bnx-marquee--compact bnx-marquee-fullbleed" aria-label="Module" ref="marquee">
@@ -12,17 +35,17 @@
             <FeatureCard 
               v-for="module in allModules" 
               :key="module.id"
-              class="bnx-card"
+              class="bnx-card rounded-2xl shadow-[0_8px_30px_rgba(2,6,23,0.06)] ring-1 ring-slate-200/60 bg-white hover:shadow-[0_12px_40px_rgba(2,6,23,0.10)] hover:-translate-y-0.5 transition focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none"
             >
               <template #icon>
-                <div v-html="module.icon" class="w-6 h-6"></div>
+                <div v-html="module.icon" class="w-6 h-6 text-indigo-600"></div>
               </template>
               <template #title>{{ module.title }}</template>
               {{ module.description }}
             </FeatureCard>
           </div>
         </div>
-
+      </div>
     </div>
   </section>
 </template>

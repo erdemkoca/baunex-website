@@ -210,6 +210,55 @@
         </div>
       </BaseContainer>
     </section>
+
+    <!-- Quick FAQ Section -->
+    <section class="section-padding bg-neutral-50">
+      <BaseContainer>
+        <div class="text-center max-w-4xl mx-auto mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Vor der Demo gefragt
+          </h2>
+          <p class="text-xl text-neutral-600">
+            Die häufigsten Fragen, die uns vor einer Demo gestellt werden
+          </p>
+        </div>
+        
+        <div class="max-w-3xl mx-auto">
+          <div class="space-y-4">
+            <div 
+              v-for="(faq, index) in contactFAQs" 
+              :key="faq.id"
+              class="card cursor-pointer"
+              @click="toggleFAQ(index)"
+            >
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-neutral-900 pr-8">
+                  {{ faq.question }}
+                </h3>
+                <svg 
+                  class="w-5 h-5 text-neutral-500 transition-transform duration-200 flex-shrink-0"
+                  :class="{ 'rotate-180': openFAQs.includes(index) }"
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              <div 
+                v-show="openFAQs.includes(index)"
+                class="mt-4 pt-4 border-t border-neutral-200"
+              >
+                <p class="text-neutral-600 leading-relaxed">
+                  {{ faq.answer }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </BaseContainer>
+    </section>
   </div>
 </template>
 
@@ -219,6 +268,7 @@ import BaseContainer from '../components/BaseContainer.vue'
 import BaseButton from '../components/BaseButton.vue'
 
 const isSubmitting = ref(false)
+const openFAQs = ref<number[]>([])
 
 const form = ref({
   name: '',
@@ -228,6 +278,42 @@ const form = ref({
   message: '',
   privacy: false
 })
+
+const toggleFAQ = (index: number) => {
+  if (openFAQs.value.includes(index)) {
+    openFAQs.value = openFAQs.value.filter(i => i !== index)
+  } else {
+    openFAQs.value.push(index)
+  }
+}
+
+const contactFAQs = [
+  {
+    id: 1,
+    question: 'Wie lange dauert eine Demo?',
+    answer: 'Eine Demo dauert in der Regel 30-45 Minuten. Wir zeigen Ihnen die wichtigsten Funktionen und passen die Präsentation an Ihre spezifischen Anforderungen an.'
+  },
+  {
+    id: 2,
+    question: 'Kann ich eine Demo online oder vor Ort haben?',
+    answer: 'Beides ist möglich! Wir bieten sowohl Online-Demos über Video-Call als auch persönliche Demos vor Ort an. Wählen Sie, was für Sie am besten passt.'
+  },
+  {
+    id: 3,
+    question: 'Was sollte ich für die Demo vorbereiten?',
+    answer: 'Bringen Sie gerne Ihre aktuellen Arbeitsabläufe und spezifische Anforderungen mit. So können wir Ihnen zeigen, wie Baunex genau in Ihrem Betrieb funktioniert.'
+  },
+  {
+    id: 4,
+    question: 'Gibt es nach der Demo ein Angebot?',
+    answer: 'Ja, nach der Demo erstellen wir gerne ein individuelles Angebot basierend auf Ihren Anforderungen. Dieses erhalten Sie innerhalb von 2-3 Werktagen.'
+  },
+  {
+    id: 5,
+    question: 'Wie schnell kann ich mit Baunex starten?',
+    answer: 'Nach der Bestellung können Sie in der Regel innerhalb von 1-2 Wochen mit Baunex starten. Wir unterstützen Sie bei der Einrichtung und Schulung.'
+  }
+]
 
 const submitForm = async () => {
   isSubmitting.value = true

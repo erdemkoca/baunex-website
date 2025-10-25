@@ -5,13 +5,33 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Stack gaps for consistent section spacing */
+    --stack-gap-desktop: 96px;
+    --stack-gap-tablet: 64px;
+    --stack-gap-mobile: 48px;
+
+    /* Glassmorphism card styling */
+    --card-radius: 24px;
+    --card-blur: 10px;
+    --card-bg-light: rgba(255, 255, 255, 0.86);
+    --card-bg-dark: rgba(15, 23, 42, 0.9);
+    --card-border-light: rgba(2, 8, 23, 0.06);
+    --card-border-dark: rgba(255, 255, 255, 0.08);
+
+    /* Brand colors */
+    --indigo: #4F46E5;
+    --cyan: #22D3EE;
+  }
+
   html {
     font-family: 'Inter', system-ui, sans-serif;
     scroll-behavior: smooth;
   }
   
   body {
-    @apply text-neutral-900 bg-white;
+    @apply text-neutral-900;
+    background: #0b1020; /* Fallback hinter der Bühne */
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
   
@@ -61,6 +81,90 @@
     @apply bg-white/10 backdrop-blur-md border border-white/20;
   }
   
+  /* Standard: alle Karten sind weiss und ruhig */
+  .card-light {
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid rgba(2, 8, 23, 0.06);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(2, 8, 23, 0.08);
+    backdrop-filter: none;
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+  
+  .card-light:hover {
+    box-shadow: 0 10px 30px rgba(2, 8, 23, 0.12);
+  }
+  
+  /* Nur Hero "glasig" lassen */
+  .hero-card {
+    background: rgba(15, 23, 42, 0.86);
+    color: #F8FAFC;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 28px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(10px);
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+  
+  .hero-card:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+  
+  .hero-card .subtle { 
+    color: #cbd5e1; 
+  }
+  
+  .hero-card .btn-secondary {
+    background: rgba(255, 255, 255, 0.14);
+    color: #F8FAFC; 
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  
+  /* Typo für weisse Karten */
+  .card-light .title { 
+    color: #0f172a; 
+  }
+  
+  .card-light .copy { 
+    color: #475569; 
+  }
+  
+  /* Light/Dark safety: in Dark-Mode bleiben Karten trotzdem weiss */
+  @media (prefers-color-scheme: dark) {
+    .card-light {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid rgba(2, 8, 23, 0.08);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+    }
+    
+    .hero-card {
+      background: rgba(15, 23, 42, 0.9);
+      color: #F8FAFC;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+  
+  /* Section spacing utilities */
+  .section-gap {
+    margin-bottom: var(--stack-gap-mobile);
+  }
+  
+  @media (min-width: 768px) {
+    .section-gap {
+      margin-bottom: var(--stack-gap-tablet);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-gap {
+      margin-bottom: var(--stack-gap-desktop);
+    }
+  }
+  
   .section-padding {
     @apply py-16 md:py-24;
   }
@@ -101,5 +205,21 @@
     to {
       opacity: 1;
     }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .card-light,
+  .hero-card {
+    transition: none;
+  }
+  
+  .card-light:hover {
+    box-shadow: 0 10px 30px rgba(2, 8, 23, 0.08);
+  }
+  
+  .hero-card:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
   }
 }

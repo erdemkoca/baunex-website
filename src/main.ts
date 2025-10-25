@@ -8,6 +8,7 @@ import Features from './pages/Features.vue'
 import Pricing from './pages/Pricing.vue'
 import Contact from './pages/Contact.vue'
 import Legal from './pages/Legal.vue'
+import FAQ from './pages/FAQ.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,6 +17,7 @@ const router = createRouter({
     { path: '/features', component: Features },
     { path: '/preise', component: Pricing },
     { path: '/kontakt', component: Contact },
+    { path: '/faq', component: FAQ },
     { path: '/impressum', component: Legal },
     { path: '/datenschutz', component: Legal },
   ],

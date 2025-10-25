@@ -1,46 +1,62 @@
 <template>
-  <div>
+  <div class="home-page">
+    <!-- Background Stage - Timed Slideshow -->
+    <BackgroundStageTimed
+      :images="[
+        '/images/hero/construction-neural-network.png',
+        '/images/hero/ar-construction-overlay.png',
+        '/images/hero/ar-construction-overlay2.png',
+        '/images/hero/ar-construction-overlay3.png'
+      ]"
+      :intervalMs="8000"
+      :fadeMs="900"
+    />
+    
     <!-- Hero Section -->
     <Hero />
+    
+    <!-- Trust Bar -->
+    <TrustBar />
     
     <!-- Features Grid -->
     <FeatureGrid />
     
-    <!-- AR Showcase -->
-    <ARShowcase />
-    
-    <!-- AR Gallery -->
-    <ARGallery />
-    
-    <!-- Team Collaboration -->
-    <TeamCollaboration />
-    
     <!-- Workflow Showcase -->
     <WorkflowShowcase />
-    
-    <!-- Stats Bar -->
-    <StatsBar />
     
     <!-- Use Cases Tabs -->
     <UseCasesTabs />
     
-    <!-- FAQ Section -->
-    <FAQAccordion />
+    <!-- FAQ Teaser Section -->
+    <FAQTeaser />
     
-    <!-- CTA Section -->
-    <CTASection />
+    <!-- Spacer to ensure footer is visible -->
+    <div class="h-20"></div>
   </div>
 </template>
 
 <script setup lang="ts">
+import BackgroundStageTimed from '../components/BackgroundStageTimed.vue'
 import Hero from '../components/Hero.vue'
+import TrustBar from '../components/TrustBar.vue'
 import FeatureGrid from '../components/FeatureGrid.vue'
-import ARShowcase from '../components/ARShowcase.vue'
-import ARGallery from '../components/ARGallery.vue'
-import TeamCollaboration from '../components/TeamCollaboration.vue'
 import WorkflowShowcase from '../components/WorkflowShowcase.vue'
-import StatsBar from '../components/StatsBar.vue'
 import UseCasesTabs from '../components/UseCasesTabs.vue'
-import FAQAccordion from '../components/FAQAccordion.vue'
-import CTASection from '../components/CTASection.vue'
+import FAQTeaser from '../components/FAQTeaser.vue'
 </script>
+
+<style scoped>
+.home-page {
+  /* Ensure proper stacking context */
+  position: relative;
+  z-index: 1;
+  /* Add top padding to account for fixed header */
+  padding-top: 64px; /* 4rem = 64px, matches header height */
+}
+
+/* Ensure sections have proper spacing and background visibility */
+.home-page > section {
+  position: relative;
+  z-index: 2;
+}
+</style>

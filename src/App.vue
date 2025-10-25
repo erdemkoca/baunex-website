@@ -12,7 +12,7 @@
     </main>
     
     <!-- Footer -->
-    <Footer />
+    <Footer class="relative z-20" />
   </div>
 </template>
 
