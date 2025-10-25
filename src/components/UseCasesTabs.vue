@@ -107,6 +107,16 @@ import BaseContainer from './BaseContainer.vue'
 import SectionHeading from './SectionHeading.vue'
 import BaseButton from './BaseButton.vue'
 
+// Type definitions
+interface UseCase {
+  id: number
+  title: string
+  description: string
+  icon: any
+  visualText: string
+  benefits: string[]
+}
+
 const activeTab = ref(0)
 
 // Trades data for marquee
@@ -179,14 +189,31 @@ function startGewerkeTicker() {
 }
 
 // Current use case based on active tab
-const currentUseCase = computed(() => {
-  return useCases[activeTab.value] || useCases[0]
+const currentUseCase = computed((): UseCase => {
+  const index = activeTab.value
+  if (index >= 0 && index < useCases.length) {
+    const useCase = useCases[index]
+    if (useCase) return useCase
+  }
+  // Fallback to first use case or default
+  if (useCases.length > 0) {
+    const firstUseCase = useCases[0]
+    if (firstUseCase) return firstUseCase
+  }
+  // Default fallback
+  return {
+    id: 0,
+    title: 'Default',
+    description: 'Default description',
+    icon: HomeIcon,
+    visualText: 'Default visual',
+    benefits: []
+  }
 })
 
 // CTA button text based on active tab
 const currentCTAButtonText = computed(() => {
   const useCase = currentUseCase.value
-  if (!useCase) return 'Jetzt testen'
   
   switch (useCase.title) {
     case 'Einzel- & Kleinbetriebe':
@@ -203,7 +230,6 @@ const currentCTAButtonText = computed(() => {
 // Contact URL with business type parameter
 const currentContactUrl = computed(() => {
   const useCase = currentUseCase.value
-  if (!useCase) return '/kontakt'
   
   // Create URL parameter based on business type
   let businessType = ''
@@ -250,7 +276,7 @@ const WrenchIcon = {
   `
 }
 
-const useCases = [
+const useCases: UseCase[] = [
   {
     id: 1,
     title: 'Einzel- & Kleinbetriebe',
