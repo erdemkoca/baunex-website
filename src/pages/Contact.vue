@@ -192,9 +192,9 @@
                   <div>
                     <h4 class="font-semibold text-neutral-900 mb-1">Adresse</h4>
                     <p class="text-neutral-600">
-                      Baunex AG<br>
-                      Musterstrasse 123<br>
-                      8001 Zürich<br>
+                      Baunex GmbH<br>
+                      Hochbergerstrasse 60<br>
+                      4057 Basel<br>
                       Schweiz
                     </p>
                   </div>

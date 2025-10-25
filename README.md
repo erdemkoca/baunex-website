@@ -187,7 +187,7 @@ Ziel: ≥ 90 in allen Kategorien
 
 ## 📄 Lizenz
 
-© 2024 Baunex AG. Alle Rechte vorbehalten.
+© 2024 Baunex GmbH. Alle Rechte vorbehalten.
 
 ## 🤝 Support
 

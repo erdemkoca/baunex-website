@@ -11,18 +11,18 @@
             <div class="prose prose-lg max-w-none">
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Angaben gemäss § 5 TMG</h3>
               <p class="mb-6">
-                Baunex AG<br>
-                Musterstrasse 123<br>
-                8001 Zürich<br>
+                Baunex GmbH<br>
+                Hochbergerstrasse 60<br>
+                4057 Basel<br>
                 Schweiz
               </p>
               
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Vertreten durch</h3>
-              <p class="mb-6">Geschäftsführung: Max Mustermann</p>
+              <p class="mb-6">Geschäftsführung: Erdem Koca</p>
               
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Kontakt</h3>
               <p class="mb-6">
-                Telefon: +41 44 123 45 67<br>
+<!--                Telefon: +41 44 123 45 67<br>-->
                 E-Mail: info@baunex.ch
               </p>
               
@@ -41,9 +41,9 @@
               
               <h3 class="text-2xl md:text-3xl font-bold leading-tight mb-4">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
               <p class="mb-6">
-                Max Mustermann<br>
-                Musterstrasse 123<br>
-                8001 Zürich
+                Erdem Koca<br>
+                Hochbergerstrasse 60<br>
+                4057 Basel
               </p>
             </div>
           </div>
