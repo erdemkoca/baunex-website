@@ -1,11 +1,11 @@
 <template>
-  <section class="py-16 md:py-20 section-gap">
-        <div class="container">
-          <div class="card-light relative overflow-hidden isolate">
-            <SectionHeading
-              title="Alles was Sie brauchen, in einer Plattform"
-              subtitle="Von der Zeiterfassung bis zur Rechnung – alle wichtigen Tools für Ihren Bau- und Handwerksbetrieb"
-            />
+  <section class="section-gap">
+    <div class="features-fullwidth">
+      <div class="container">
+        <SectionHeading
+          title="Alles was Sie brauchen, in einer Plattform"
+          subtitle="Von der Zeiterfassung bis zur Rechnung – alle wichtigen Tools für Ihren Bau- und Handwerksbetrieb"
+        />
 
         <!-- KI-Features Chips -->
         <div class="mt-6 lg:mt-8 flex flex-wrap gap-2">
@@ -451,6 +451,27 @@ const allModules = [
 .bnx-card:focus-visible {
   outline: 2px solid #4f46e5;
   outline-offset: 2px;
+}
+
+/* Vollbreite Layout - deckt Seiten komplett ab */
+.features-fullwidth {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #ffffff;
+  padding: 2rem 0;
+}
+
+@media (min-width: 640px) {
+  .features-fullwidth {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-fullwidth {
+    padding: 4rem 0;
+  }
 }
 </style>
 
