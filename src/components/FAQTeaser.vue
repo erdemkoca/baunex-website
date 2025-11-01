@@ -1,7 +1,7 @@
 <template>
-  <section class="section-padding section-gap">
-    <BaseContainer>
-      <div class="card-light">
+  <section class="section-gap">
+    <div class="faq-fullwidth">
+      <BaseContainer>
         <SectionHeading
           title="Häufige Fragen"
           subtitle="Schnelle Antworten auf die wichtigsten Fragen"
@@ -60,8 +60,8 @@
             </BaseButton>
           </div>
         </div>
-      </div>
-    </BaseContainer>
+      </BaseContainer>
+    </div>
   </section>
 </template>
 
@@ -100,3 +100,26 @@ const quickFAQs = [
   }
 ]
 </script>
+
+<style scoped>
+/* Vollbreite Layout - deckt Seiten komplett ab */
+.faq-fullwidth {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #ffffff;
+  padding: 2rem 0;
+}
+
+@media (min-width: 640px) {
+  .faq-fullwidth {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .faq-fullwidth {
+    padding: 4rem 0;
+  }
+}
+</style>

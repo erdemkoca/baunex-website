@@ -1,11 +1,11 @@
 <template>
-  <section class="section-padding section-gap">
-    <BaseContainer>
-      <div class="card-light">
-              <SectionHeading
-                title="Für jeden Betriebstyp optimiert"
-                subtitle="Baunex passt sich Ihrem Team und Ihren Projekten an – vom Einmannbetrieb bis GU/TU."
-              />
+  <section class="section-gap">
+    <div class="usecases-fullwidth">
+      <BaseContainer>
+        <SectionHeading
+          title="Für jeden Betriebstyp optimiert"
+          subtitle="Baunex passt sich Ihrem Team und Ihren Projekten an – vom Einmannbetrieb bis GU/TU."
+        />
 
         <!-- Sticky Tab Navigation -->
         <div class="sticky top-4 z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-2 mb-8">
@@ -96,8 +96,8 @@
             </div>
           </div>
         </div>
-      </div>
-    </BaseContainer>
+      </BaseContainer>
+    </div>
   </section>
 </template>
 
@@ -404,6 +404,27 @@ onUnmounted(() => {
 @media (prefers-reduced-motion: reduce) {
   .bnx-track {
     animation: none !important;
+  }
+}
+
+/* Vollbreite Layout - deckt Seiten komplett ab */
+.usecases-fullwidth {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #ffffff;
+  padding: 2rem 0;
+}
+
+@media (min-width: 640px) {
+  .usecases-fullwidth {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .usecases-fullwidth {
+    padding: 4rem 0;
   }
 }
 

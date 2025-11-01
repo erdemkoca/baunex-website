@@ -1,11 +1,11 @@
 <template>
-  <section class="py-16 md:py-20 section-gap">
-    <div class="container">
-      <div class="card-light">
-                <SectionHeading
-                  title="Von der Planung zur Ausführung"
-                  subtitle="Effizient zusammenarbeiten – vor Ort und im Büro"
-                />
+  <section class="section-gap">
+    <div class="workflow-fullwidth">
+      <div class="container">
+        <SectionHeading
+          title="Von der Planung zur Ausführung"
+          subtitle="Effizient zusammenarbeiten – vor Ort und im Büro"
+        />
 
         <!-- Phase 1: Planung -->
         <div class="py-12 lg:py-16">
@@ -108,3 +108,25 @@
 <script setup lang="ts">
 import SectionHeading from './SectionHeading.vue'
 </script>
+
+<style scoped>
+.workflow-fullwidth {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #ffffff;
+  padding: 2rem 0;
+}
+
+@media (min-width: 640px) {
+  .workflow-fullwidth {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .workflow-fullwidth {
+    padding: 4rem 0;
+  }
+}
+</style>
